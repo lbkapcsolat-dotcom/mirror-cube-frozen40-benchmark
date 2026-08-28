@@ -1,0 +1,88 @@
+{
+  "count": 4,
+  "ordinals": [
+    7,
+    9,
+    20,
+    29
+  ],
+  "schema": "MIRROR_CUBE_EXACT12_WITNESS_REGISTRY_V1",
+  "witnesses": [
+    {
+      "length": 12,
+      "moves": [
+        "B2",
+        "L2",
+        "D2",
+        "R2",
+        "L'",
+        "D2",
+        "R",
+        "D'",
+        "L'",
+        "F",
+        "U'",
+        "R2"
+      ],
+      "ordinal": 7,
+      "replay_status": "PASS_SOLVED"
+    },
+    {
+      "length": 12,
+      "moves": [
+        "R2",
+        "U2",
+        "F",
+        "B'",
+        "U'",
+        "D",
+        "F'",
+        "L2",
+        "B'",
+        "D2",
+        "R2",
+        "F'"
+      ],
+      "ordinal": 9,
+      "replay_status": "PASS_SOLVED"
+    },
+    {
+      "length": 12,
+      "moves": [
+        "F",
+        "B2",
+        "D2",
+        "R'",
+        "D2",
+        "F2",
+        "D2",
+        "L2",
+        "U",
+        "F2",
+        "D",
+        "B'"
+      ],
+      "ordinal": 20,
+      "replay_status": "PASS_SOLVED"
+    },
+    {
+      "length": 12,
+      "moves": [
+        "F",
+        "R",
+        "B'",
+        "L2",
+        "F",
+        "L'",
+        "D",
+        "F",
+        "L",
+        "F'",
+        "U",
+        "D"
+      ],
+      "ordinal": 29,
+      "replay_status": "PASS_SOLVED"
+    }
+  ]
+}
