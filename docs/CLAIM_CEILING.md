@@ -1,0 +1,5 @@
+# Claim ceiling
+
+`BOUNDED_FROZEN_40_STATE_DEPTH13_CANDIDATE_POOL__STANDARD_3X3_HTM_CUBIE_BACKEND__EXACT_DISTANCE_FOR_THESE_40_FROZEN_STATES_ONLY__NO_COMPLETE_3X3_STATE_SPACE_DIAMETER_PROOF__NO_PHYSICAL_MIRROR_CUBE_VISION_OR_ROBOTICS_SOLVER__NO_GLOBAL_SOLVER_OPTIMALITY_CLAIM__REMOTE_16_STATE_PREDECESSOR_BYTES_NOT_CURRENTLY_LOCAL_ONLY_PREVIOUSLY_VERIFIED_HASH_AUTHORITY`
+
+In plain language: this bundle supports exact HTM distances for these 40 frozen standard-3x3-backend states only. It does not establish the full 3x3 diameter, a globally optimal solver, physical Mirror Cube perception, robotics, or a claim about all Mirror Cube positions.
