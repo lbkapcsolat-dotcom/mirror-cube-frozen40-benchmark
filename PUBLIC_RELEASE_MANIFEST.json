@@ -1,12 +1,22 @@
 {
   "benchmark_id": "MC-F40-EXACT-HTM-V1",
   "repository": "lbkapcsolat-dotcom/mirror-cube-frozen40-benchmark",
-  "release_tag_target": "mc-f40-exact-htm-v1.0.0",
-  "immutable_payload_path": "release/MIRROR_CUBE_FROZEN_40_EXACT_DISTANCE_READ_ONLY_PUBLIC_BENCHMARK_V1.zip",
-  "immutable_payload_sha256": "928c15fcd7c934af03a2373f5796f12f6f94aa91ebde6af6728d4c9d0d8bfbef",
+  "repository_visibility": "public",
+  "repository_default_branch": "main",
+  "publication_view": "TEXT_HASH_VERIFIABLE_REPOSITORY_VIEW",
+  "canonical_source_bundle_sha256": "928c15fcd7c934af03a2373f5796f12f6f94aa91ebde6af6728d4c9d0d8bfbef",
+  "canonical_source_bundle_binary_uploaded": false,
+  "binary_upload_note": "A connector binary-upload attempt was rejected from release authority after fresh readback showed truncation; the bad blob was deleted before tag/release.",
+  "canonical_ledger_path": "data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv",
+  "canonical_ledger_sha256": "996a43c41b90e7d23d825ed6be7a20c6f26fb3508b92cb7300a1de41ab3ead2d",
+  "exact12_witness_registry_path": "data/EXACT12_WITNESS_REGISTRY.json",
+  "exact12_witness_registry_sha256": "4a8f31657e31bf9afc0c7a085b163612a0e9bf6eb42d659defa40231e8a0f52f",
   "final_benchmark_seal_root": "2cd24c9d2fb473bbab9bc79e79a2ce59373fad324fe0ad9bddf65ab917732fd8",
   "read_only_lock_root": "67d931b329b378c7a02de79f79922df55407de38ba4105f8d3a81f102e03cc06",
+  "release_tag_target": "mc-f40-exact-htm-v1.0.0",
+  "release_tag_status": "PENDING_CONNECTOR_TAG_WRITE_CAPABILITY",
   "data_docs_license": "CC-BY-4.0",
   "verifier_software_license": "MIT",
-  "author_maintainer": "lbkapcsolat-dotcom"
+  "author_maintainer": "lbkapcsolat-dotcom",
+  "public_repository_payload_status": "PASS_CORE_TEXT_PAYLOAD_PUSH_AND_FRESH_READBACK"
 }
