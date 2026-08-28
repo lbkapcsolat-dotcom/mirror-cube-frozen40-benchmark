@@ -1,0 +1,35 @@
+{
+  "gate": "MIRROR_CUBE_FROZEN_40_PUBLIC_REPOSITORY_PAYLOAD_PUSH_TAG_AND_FRESH_READBACK_V1",
+  "verdict": "PASS_PUBLIC_RELEASE_WITH_DISCLOSED_POST_RELEASE_MANIFEST_CORRECTION",
+  "repository": "lbkapcsolat-dotcom/mirror-cube-frozen40-benchmark",
+  "visibility": "public",
+  "default_branch": "main",
+  "release_id": 378425509,
+  "release_name": "MC-F40 Exact HTM Benchmark v1.0.0",
+  "release_tag": "mc-f40-exact-htm-v1.0.0",
+  "release_published_at": "2026-08-28T10:56:52Z",
+  "tag_commit_sha": "5fa53fdbc587bae8db150779ad2eb83c2fc4f012",
+  "canonical_source_bundle_sha256": "928c15fcd7c934af03a2373f5796f12f6f94aa91ebde6af6728d4c9d0d8bfbef",
+  "canonical_source_bundle_binary_uploaded": false,
+  "publication_view": "TEXT_HASH_VERIFIABLE_REPOSITORY_VIEW",
+  "canonical_ledger": {
+    "path": "data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv",
+    "sha256": "3d5a0297e1a740ea3500fb5afcfad7d2f570d338027d903d9d8ff0aa73fefb11",
+    "git_blob_sha": "edb17719162969ce95999d0f83197ad2aa3dcc5b",
+    "tag_readback": "PASS"
+  },
+  "exact12_witness_registry": {
+    "path": "data/EXACT12_WITNESS_REGISTRY.json",
+    "sha256": "ba29d969c0fd440e059bc8752e156cbb2dc0294a6454a25a90ace705422f7db8",
+    "git_blob_sha": "0d43cc216b4ad8f228b58500cf0761f24adcc227",
+    "tag_readback": "PASS"
+  },
+  "final_benchmark_seal_root": "2cd24c9d2fb473bbab9bc79e79a2ce59373fad324fe0ad9bddf65ab917732fd8",
+  "read_only_lock_root": "67d931b329b378c7a02de79f79922df55407de38ba4105f8d3a81f102e03cc06",
+  "classification_counts": {"total": 40, "exact12": 4, "exact13": 36},
+  "exact12_ordinals": [7,9,20,29],
+  "tag_snapshot_manifest_disclosure": "The v1.0.0 tag contains the pre-release PUBLIC_RELEASE_MANIFEST with two stale SHA256 metadata fields and a pending tag-status field. The benchmark payload bytes themselves were independently read back and matched. Corrected post-release manifest is on main at commit 559d7423936718becd421814de6b7ea134d9fff6.",
+  "corrected_main_manifest_commit": "559d7423936718becd421814de6b7ea134d9fff6",
+  "claim_ceiling": "FROZEN_40_STANDARD_3X3_CUBIE_HTM_BENCHMARK_ONLY__NO_FULL_3X3_STATE_SPACE_THEOREM__NO_PHYSICAL_MIRROR_CUBE_SOLVER__NO_BINARY_RELEASE_ASSET_AUTHORITY__POST_RELEASE_MANIFEST_CORRECTION_DISCLOSED",
+  "zero_spend": true
+}
