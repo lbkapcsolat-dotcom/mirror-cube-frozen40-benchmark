@@ -1,4 +1,5 @@
 {
+  "manifest_schema": "MC_F40_VERSION_NEUTRAL_RELEASE_MANIFEST_V1",
   "benchmark_id": "MC-F40-EXACT-HTM-V1",
   "repository": "lbkapcsolat-dotcom/mirror-cube-frozen40-benchmark",
   "repository_visibility": "public",
@@ -6,21 +7,32 @@
   "publication_view": "TEXT_HASH_VERIFIABLE_REPOSITORY_VIEW",
   "canonical_source_bundle_sha256": "928c15fcd7c934af03a2373f5796f12f6f94aa91ebde6af6728d4c9d0d8bfbef",
   "canonical_source_bundle_binary_uploaded": false,
-  "binary_upload_note": "A connector binary-upload attempt was rejected from release authority after fresh readback showed truncation; the bad blob was deleted before tag/release.",
+  "binary_upload_note": "A connector binary-upload attempt was rejected from release authority after fresh readback showed truncation; the bad blob was deleted before release authority was established.",
   "canonical_ledger_path": "data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv",
   "canonical_ledger_sha256": "3d5a0297e1a740ea3500fb5afcfad7d2f570d338027d903d9d8ff0aa73fefb11",
   "exact12_witness_registry_path": "data/EXACT12_WITNESS_REGISTRY.json",
   "exact12_witness_registry_sha256": "ba29d969c0fd440e059bc8752e156cbb2dc0294a6454a25a90ace705422f7db8",
   "final_benchmark_seal_root": "2cd24c9d2fb473bbab9bc79e79a2ce59373fad324fe0ad9bddf65ab917732fd8",
   "read_only_lock_root": "67d931b329b378c7a02de79f79922df55407de38ba4105f8d3a81f102e03cc06",
-  "release_tag_target": "mc-f40-exact-htm-v1.0.0",
-  "release_tag_status": "PASS_CREATED_AND_PUBLIC_READBACK",
-  "release_tag_commit_sha": "5fa53fdbc587bae8db150779ad2eb83c2fc4f012",
-  "github_release_id": 378425509,
-  "github_release_published_at": "2026-08-28T10:56:52Z",
+  "release_binding_policy": {
+    "mode": "VERSION_NEUTRAL",
+    "github_release_metadata_authority": "NON_CANONICAL_EXTERNAL_METADATA",
+    "tag_name_embedded_in_manifest": false,
+    "tag_commit_sha_embedded_in_manifest": false,
+    "github_release_id_embedded_in_manifest": false,
+    "github_release_timestamp_embedded_in_manifest": false,
+    "required_external_readback": [
+      "TAG_EXISTS",
+      "TAG_RESOLVES_TO_EXPECTED_COMMIT",
+      "RELEASE_EXISTS",
+      "RELEASE_IS_PUBLIC",
+      "RELEASE_IS_NOT_DRAFT",
+      "RELEASE_IS_NOT_PRERELEASE"
+    ]
+  },
   "data_docs_license": "CC-BY-4.0",
   "verifier_software_license": "MIT",
   "author_maintainer": "lbkapcsolat-dotcom",
   "public_repository_payload_status": "PASS_CORE_TEXT_PAYLOAD_PUSH_AND_FRESH_READBACK",
-  "post_release_status": "PASS_PUBLIC_RELEASE_READBACK_WITH_POST_RELEASE_MANIFEST_CORRECTION_ON_MAIN"
+  "claim_ceiling": "FROZEN_40_STANDARD_3X3_CUBIE_HTM_BENCHMARK_ONLY__NO_FULL_3X3_STATE_SPACE_THEOREM__NO_PHYSICAL_MIRROR_CUBE_SOLVER__NO_BINARY_RELEASE_ASSET_AUTHORITY"
 }
