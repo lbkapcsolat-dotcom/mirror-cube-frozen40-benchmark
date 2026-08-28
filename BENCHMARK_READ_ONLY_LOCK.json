@@ -1,0 +1,40 @@
+{
+  "allowed_operations": [
+    "READ",
+    "COPY",
+    "VERIFY",
+    "MIRROR_WITH_HASH_PRESERVATION"
+  ],
+  "benchmark_id": "MC-F40-EXACT-HTM-V1",
+  "claim_ceiling": "BOUNDED_FROZEN_40_STATE_DEPTH13_CANDIDATE_POOL__STANDARD_3X3_HTM_CUBIE_BACKEND__EXACT_DISTANCE_FOR_THESE_40_FROZEN_STATES_ONLY__NO_COMPLETE_3X3_STATE_SPACE_DIAMETER_PROOF__NO_PHYSICAL_MIRROR_CUBE_VISION_OR_ROBOTICS_SOLVER__NO_GLOBAL_SOLVER_OPTIMALITY_CLAIM__REMOTE_16_STATE_PREDECESSOR_BYTES_NOT_CURRENTLY_LOCAL_ONLY_PREVIOUSLY_VERIFIED_HASH_AUTHORITY",
+  "classification_counts": {
+    "exact12": 4,
+    "exact13": 36,
+    "total": 40
+  },
+  "custody_disclosure": {
+    "remote16_current_local_bytes": false,
+    "remote16_hash_authority": "PREVIOUSLY_VERIFIED_AND_RECORDED"
+  },
+  "exact12_ordinals": [
+    7,
+    9,
+    20,
+    29
+  ],
+  "external_release_performed": false,
+  "forbidden_in_place_operations": [
+    "RECLASSIFY",
+    "OVERWRITE_LEDGER",
+    "CHANGE_FROZEN_POOL",
+    "ALTER_WITNESS",
+    "MUTATE_PROOF_BASIS"
+  ],
+  "lock_id": "MC-F40-EXACT-HTM-V1-LOCK",
+  "lock_root_sha256": "67d931b329b378c7a02de79f79922df55407de38ba4105f8d3a81f102e03cc06",
+  "schema": "MIRROR_CUBE_READ_ONLY_BENCHMARK_LOCK_V1",
+  "source_final_ledger_sha256": "288bb565f5cc439a1d116ba59f77a2c8bfb800a09751a96e9af6279e6bacfed6",
+  "source_final_seal_root_sha256": "2cd24c9d2fb473bbab9bc79e79a2ce59373fad324fe0ad9bddf65ab917732fd8",
+  "source_frozen_pool_sha256": "9d0faf5229f56bfc203a68a54d56eff23b56c804588511c04d84774f98e198bd",
+  "versioning_rule": "ANY_CHANGE_REQUIRES_NEW_BENCHMARK_VERSION_AND_NEW_SEAL_ROOT__NEVER_EDIT_V1_IN_PLACE"
+}
