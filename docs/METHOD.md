@@ -6,7 +6,7 @@ The benchmark uses the standard 3x3 cubie state space and the Half Turn Metric (
 
 ## Frozen inputs
 
-The benchmark contains exactly 40 deterministic 13-move candidate sequences. Their source JSON is included unchanged in `data/DEPTH13_CANDIDATE_POOL_V1.json`; its SHA-256 is bound by the final seal.
+The benchmark contains exactly 40 deterministic 13-move candidate sequences. In this repository publication view, the frozen sequences are preserved in `data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv`; the canonical source-pool SHA-256 remains bound by the final seal.
 
 ## Exact-distance rule
 
@@ -19,7 +19,7 @@ The four exact-12 witnesses are preserved in `data/EXACT12_WITNESS_REGISTRY.json
 
 ## Proof routes
 
-The detailed JSON ledger records the proof route per ordinal. Some earlier 16-state evidence was verified on an authorized remote Linux recovery host. Its hashes and classifications are bound in provenance, while this publication bundle explicitly does not claim current local byte custody for those historical predecessor files.
+The ledger records the proof route per ordinal. Some earlier 16-state evidence was verified on an authorized remote Linux recovery host. Its hashes and classifications are bound in provenance, while this repository explicitly does not claim current local byte custody for those historical predecessor files.
 
 ## Final counts
 
