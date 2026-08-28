@@ -1,0 +1,73 @@
+{
+  "benchmark_scope": "FROZEN_DEPTH13_CANDIDATE_POOL_40__STANDARD_3X3_HTM",
+  "bound_components": {
+    "claim_ceiling": "BOUNDED_FROZEN_40_STATE_DEPTH13_CANDIDATE_POOL__STANDARD_3X3_HTM_CUBIE_BACKEND__EXACT_DISTANCE_FOR_THESE_40_FROZEN_STATES_ONLY__NO_COMPLETE_3X3_STATE_SPACE_DIAMETER_PROOF__NO_PHYSICAL_MIRROR_CUBE_VISION_OR_ROBOTICS_SOLVER__NO_GLOBAL_SOLVER_OPTIMALITY_CLAIM__REMOTE_16_STATE_PREDECESSOR_BYTES_NOT_CURRENTLY_LOCAL_ONLY_PREVIOUSLY_VERIFIED_HASH_AUTHORITY",
+    "current17_evidence_sha256": "a912e33c4084da94b5a7269f3efd63b056d8bc42cb6d40cad2aaef30a9bac15a",
+    "gate": "MIRROR_CUBE_FROZEN_40_EXACT_DISTANCE_FINAL_CLOSURE_AND_BENCHMARK_SEAL_V1",
+    "ledger_sha256": "288bb565f5cc439a1d116ba59f77a2c8bfb800a09751a96e9af6279e6bacfed6",
+    "lineage_registry_sha256": "e432ed8f9a30bd838b8f044f706f9da30cf0d1ee89febd54e2ab8ba56665de66",
+    "pool_sha256": "9d0faf5229f56bfc203a68a54d56eff23b56c804588511c04d84774f98e198bd",
+    "remote16_evidence_sha256": "314b04f8953a2f4b699f2ab87d1105d0abc46c8ce3b0fbafdf5cb03ca85888fd",
+    "verification_report_sha256": "b2e664e87c1521c5d531ffbf9638348e07c8b52eb0d554805e02a0c174593cb3",
+    "witness_registry_sha256": "ba29d969c0fd440e059bc8752e156cbb2dc0294a6454a25a90ace705422f7db8"
+  },
+  "claim_ceiling": "BOUNDED_FROZEN_40_STATE_DEPTH13_CANDIDATE_POOL__STANDARD_3X3_HTM_CUBIE_BACKEND__EXACT_DISTANCE_FOR_THESE_40_FROZEN_STATES_ONLY__NO_COMPLETE_3X3_STATE_SPACE_DIAMETER_PROOF__NO_PHYSICAL_MIRROR_CUBE_VISION_OR_ROBOTICS_SOLVER__NO_GLOBAL_SOLVER_OPTIMALITY_CLAIM__REMOTE_16_STATE_PREDECESSOR_BYTES_NOT_CURRENTLY_LOCAL_ONLY_PREVIOUSLY_VERIFIED_HASH_AUTHORITY",
+  "classification_counts": {
+    "exact12": 4,
+    "exact13": 36,
+    "total": 40
+  },
+  "custody_disclosure": {
+    "remote16_current_local_bytes": false,
+    "remote16_hash_authority": "PREVIOUSLY_VERIFIED_AND_RECORDED"
+  },
+  "exact12_ordinals": [
+    7,
+    9,
+    20,
+    29
+  ],
+  "exact13_ordinals": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "gate": "MIRROR_CUBE_FROZEN_40_EXACT_DISTANCE_FINAL_CLOSURE_AND_BENCHMARK_SEAL_V1",
+  "next_state": "READ_ONLY_BENCHMARK_REFERENCE__NO_FURTHER_SEARCH_REQUIRED_FOR_THIS_FROZEN_40_SCOPE",
+  "schema": "MIRROR_CUBE_FROZEN_40_EXACT_DISTANCE_FINAL_BENCHMARK_SEAL_V1",
+  "seal_root_sha256": "2cd24c9d2fb473bbab9bc79e79a2ce59373fad324fe0ad9bddf65ab917732fd8",
+  "verdict": "PASS_FINAL_BENCHMARK_SEAL"
+}
