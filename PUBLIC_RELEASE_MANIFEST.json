@@ -1,0 +1,12 @@
+{
+  "benchmark_id": "MC-F40-EXACT-HTM-V1",
+  "repository": "lbkapcsolat-dotcom/mirror-cube-frozen40-benchmark",
+  "release_tag_target": "mc-f40-exact-htm-v1.0.0",
+  "immutable_payload_path": "release/MIRROR_CUBE_FROZEN_40_EXACT_DISTANCE_READ_ONLY_PUBLIC_BENCHMARK_V1.zip",
+  "immutable_payload_sha256": "928c15fcd7c934af03a2373f5796f12f6f94aa91ebde6af6728d4c9d0d8bfbef",
+  "final_benchmark_seal_root": "2cd24c9d2fb473bbab9bc79e79a2ce59373fad324fe0ad9bddf65ab917732fd8",
+  "read_only_lock_root": "67d931b329b378c7a02de79f79922df55407de38ba4105f8d3a81f102e03cc06",
+  "data_docs_license": "CC-BY-4.0",
+  "verifier_software_license": "MIT",
+  "author_maintainer": "lbkapcsolat-dotcom"
+}
