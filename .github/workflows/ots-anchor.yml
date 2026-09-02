@@ -1,0 +1,77 @@
+name: OpenTimestamps canonical-root anchor
+
+on:
+  push:
+    branches:
+      - repro-kit-v1
+    paths:
+      - .github/workflows/ots-anchor.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stamp-canonical-root:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CANONICAL_ROOT_SHA256: a914938b852e6c0afd54b103e020a774a881f52e984932d4f537ef677189d194
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install isolated OpenTimestamps client
+        run: |
+          set -euo pipefail
+          mkdir ots-work
+          cd ots-work
+          npm init -y >/dev/null 2>&1
+          npm install --no-audit --no-fund opentimestamps@0.4.9
+
+      - name: Stamp exact frozen digest
+        run: |
+          set -euo pipefail
+          cd ots-work
+          DIGEST="$CANONICAL_ROOT_SHA256"
+          test "${#DIGEST}" -eq 64
+          printf '%s' "$DIGEST" | grep -Eq '^[0-9a-f]{64}$'
+          ./node_modules/.bin/ots-cli.js stamp -d "$DIGEST"
+          test -s "$DIGEST.ots"
+          mkdir -p ../evidence
+          cp "$DIGEST.ots" ../evidence/CANONICAL_ROOT.sha256.ots
+
+      - name: Read back receipt and fail closed on digest mismatch
+        run: |
+          set -euo pipefail
+          cd ots-work
+          DIGEST="$CANONICAL_ROOT_SHA256"
+          ./node_modules/.bin/ots-cli.js info "$DIGEST.ots" | tee ../evidence/ots-info.txt
+          grep -F "File sha256 hash: $DIGEST" ../evidence/ots-info.txt
+          PROOF_SHA256="$(sha256sum ../evidence/CANONICAL_ROOT.sha256.ots | awk '{print $1}')"
+          PROOF_BYTES="$(wc -c < ../evidence/CANONICAL_ROOT.sha256.ots | tr -d ' ')"
+          export PROOF_SHA256 PROOF_BYTES
+          node - <<'NODE'
+          const fs = require('fs');
+          const receipt = {
+            schema: 'MC_F40_OPENTIMESTAMPS_SUBMISSION_RECEIPT_V1',
+            status: 'STAMPED_PENDING_OR_ATTESTED',
+            canonical_root_sha256: process.env.CANONICAL_ROOT_SHA256,
+            ots_proof_sha256: process.env.PROOF_SHA256,
+            ots_proof_bytes: Number(process.env.PROOF_BYTES),
+            github_run_id: process.env.GITHUB_RUN_ID,
+            github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
+            github_sha: process.env.GITHUB_SHA
+          };
+          fs.writeFileSync('../evidence/submission-receipt.json', JSON.stringify(receipt, null, 2) + '\n');
+          NODE
+          sha256sum ../evidence/CANONICAL_ROOT.sha256.ots ../evidence/ots-info.txt ../evidence/submission-receipt.json | tee ../evidence/SHA256SUMS
+
+      - name: Upload OpenTimestamps receipt evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: mc-f40-opentimestamps-receipt
+          path: evidence/
+          if-no-files-found: error
+          retention-days: 90
