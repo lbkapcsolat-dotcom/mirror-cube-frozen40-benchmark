@@ -64,7 +64,7 @@ jobs:
             const digest = process.env.CANONICAL_ROOT_SHA256;
             const proofBytes = fs.readFileSync('CANONICAL_ROOT.sha256.ots');
             const detachedOts = OpenTimestamps.DetachedTimestampFile.deserialize(proofBytes);
-            if (Buffer.from(detachedOts.fileDigest).toString('hex') !== digest) throw new Error('embedded digest mismatch');
+            if (Buffer.from(detachedOts.fileDigest()).toString('hex') !== digest) throw new Error('embedded digest mismatch');
             const info = fs.readFileSync('../evidence/info-after.txt','utf8');
             const hasBitcoin = info.includes('BitcoinBlockHeaderAttestation');
             let verifyResult = null;
