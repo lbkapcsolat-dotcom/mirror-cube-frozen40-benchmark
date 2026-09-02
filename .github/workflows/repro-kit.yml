@@ -1,0 +1,33 @@
+name: Public repro kit
+
+on:
+  push:
+    branches: [repro-kit-v1]
+  pull_request:
+
+jobs:
+  unit-and-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Public 40-state replay
+        run: python -m repro.verify_public replay --json
+      - name: Shallow radius control
+        run: |
+          python - <<'PY'
+          import tempfile
+          from pathlib import Path
+          from repro.mitm import build_radius_cache
+          with tempfile.TemporaryDirectory() as td:
+              result = build_radius_cache(Path(td) / 'radius3.sqlite', radius=3)
+              assert result['state_count'] == 3502, result
+              print(result)
+          PY
+
+# Full radius-6 construction/classify-all is deliberately not labeled PASS in CI
+# until its runtime/resource envelope is separately demonstrated.
