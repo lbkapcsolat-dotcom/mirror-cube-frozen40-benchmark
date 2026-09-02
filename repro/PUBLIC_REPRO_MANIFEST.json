@@ -1,0 +1,44 @@
+{
+  "schema": "MC_F40_SELF_CONTAINED_PUBLIC_REPRO_MANIFEST_V1",
+  "benchmark_id": "MC-F40-EXACT-HTM-V1",
+  "repro_layer": "MIRROR_CUBE_SELF_CONTAINED_PUBLIC_REPRO_KIT_V1",
+  "branch": "repro-kit-v1",
+  "implementation": "python-standard-library-reference",
+  "public_replay_status": "PASS_40_OF_40_STATE_RECONSTRUCTION__PASS_4_OF_4_WITNESS_REPLAY",
+  "full_lower_bound_status": "HOLD_NOT_YET_FRESHLY_EXECUTED",
+  "public_inputs": {
+    "data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv": "3d5a0297e1a740ea3500fb5afcfad7d2f570d338027d903d9d8ff0aa73fefb11",
+    "data/EXACT12_WITNESS_REGISTRY.json": "ba29d969c0fd440e059bc8752e156cbb2dc0294a6454a25a90ace705422f7db8"
+  },
+  "source_files": {
+    "repro/__init__.py": "828a7867339beb9d9dfd11e5d55087be51cc3e719dfe141afc68c4133b723c24",
+    "repro/cube.py": "41d6c0d16e1927bdef90e5b487338ba5455181b92335bb794bd6eef800e7425c",
+    "repro/dataset.py": "0c1d0132ba5117757ed6f85bbfde33163cf5d5df8bcc73e9179069277e3830d9",
+    "repro/replay.py": "d654987f111d0e9b4999e1c595f258139b4697f35b42bda34246670b2375afbb",
+    "repro/mitm.py": "14baf609338b4a51f6885c95b6c8ff98370c5f865084787722bce33f33810751",
+    "repro/verify_public.py": "d13f5045170265b53e87c87d0a2101b4abf49681cee4607a6d88a951ad7aef3c"
+  },
+  "test_files": {
+    "tests/test_cube.py": "067f51416d6bfc02801f895cc4f101fafc6b375d5aa1bb489206cc750fa0ce94",
+    "tests/test_replay.py": "58b11e0edc2b2820afd3bf94e87a34f957390d09f54416b50c8c611ebc8067c7",
+    "tests/test_mitm.py": "295eed9fb8e051aa12b6d036851ecb619961ed35f68b01ddc1da8d9d477eca44",
+    "tests/test_classifier.py": "ef84a712b2899acc6397080f4d3648f007ddeaba61f50e058dd681cda504f704",
+    "tests/test_manifest.py": "2fed3e603a4a4ac247083aea83d3ca10fb36f77f1fec95314ab94b9f4bf5d8db"
+  },
+  "support_files": {
+    "repro/REPRODUCIBILITY.md": "7c52c345f79111ba70960bf97dcfd257a01053cc5f6623e023f2940a93d5ed3c",
+    ".github/workflows/repro-kit.yml": "aa0aff0e647e7140ffe8f10a4983be68c3883f97957f945fe035b1e6cfa249cb"
+  },
+  "expected_search_controls": {
+    "exact_depth_1": 18,
+    "exact_depth_2": 243,
+    "exact_depth_3": 3240,
+    "unique_radius_5": 621649,
+    "unique_radius_6": 8240087,
+    "canonical_tree_nodes_radius_6": 8331112
+  },
+  "pre_full_run_claim_ceiling": "PUBLIC_STATE_RECONSTRUCTION_AND_4_OF_4_WITNESS_REPLAY_ONLY__NO_INDEPENDENT_EXACT13_LOWER_BOUND_PASS",
+  "post_full_run_claim_ceiling_if_and_only_if_all_40_pass": "INDEPENDENT_SELF_CONTAINED_REPRODUCTION_OF_EXACT_HTM_DISTANCES_FOR_THE_FROZEN_40_STANDARD_3X3_STATES_ONLY__NO_COMPLETE_3X3_DIAMETER_THEOREM__NO_GLOBAL_SOLVER_OPTIMALITY__NO_PHYSICAL_MIRROR_CUBE_VISION_OR_ROBOTICS_CLAIM",
+  "frozen_v1_mutated": false,
+  "automatic_merge_release_or_external_post": false
+}
