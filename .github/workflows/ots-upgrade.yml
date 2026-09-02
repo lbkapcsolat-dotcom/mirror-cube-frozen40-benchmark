@@ -1,0 +1,104 @@
+name: OpenTimestamps receipt upgrade and verify
+
+on:
+  push:
+    branches:
+      - repro-kit-v1
+    paths:
+      - .github/workflows/ots-upgrade.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upgrade-and-verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CANONICAL_ROOT_SHA256: a914938b852e6c0afd54b103e020a774a881f52e984932d4f537ef677189d194
+      ORIGINAL_OTS_SHA256: b24e9512a678484aebe971aa2801a73f9b985af7eb72911355d77e774f9441fb
+      OTS_BASE64: AE9wZW5UaW1lc3RhbXBzAABQcm9vZgC/ieLohOiSlAEIqRSTi4UubAr9VLED4CCndKiB9S6YSTLU9TfvZ3GJ0ZTwEL759CuyYfHJiNJjkow7SnsI//AIIXGN+cH0b2gI8SD0FlYcCKfio4dfUAULO5Tw4DXaBMTlVS+VxS3etLELowjwEErWxJ9N580O2zzaAF/c//II8CBkfHEPzaXUOO3byxJB5VpNlGMAvP6uLz2EwC/3AAY+jAjwIL/aoKjC3cVrXuAubMhD5afqwyhkay3VLS6SFHcxe4GOCPAgoMdRUspZaKM6She7rIcjiYeHL2M2tpXNG/xnPB/qQFsI8QRqmENZ8Ajx8Gnzwt+LNQCD3+MNLvkMji4taHR0cHM6Ly9hbGljZS5idGMuY2FsZW5kYXIub3BlbnRpbWVzdGFtcHMub3Jn//AIKEOZRYjSHzoI8SC8TEf3c7epSbBEJvqAtdaFG6hS5Xe9ssHCHf/xC1PrqgjwEEjtjntHnxTVq7lewZhDMxcI8SCzaWMnNSrphDsgrQPpQ8630jRIqFfj5mr4yvsH5cwfIQjxIJhTp5GiijjgoC1C74H9w74aCx7QiFHlJ86whcf6lWegCPEEaphDWPAILp08KtzimIYAg9/jDS75DI4sK2h0dHBzOi8vYm9iLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmf/8BBNeYBCK++PbYFd4je6xi46CPEggd9zTMHaho/MH2U/FUGjQD1aSdKgHE05f7h8x2ctIY8I8SCHLD2amOQoOiazuk9m2i5OkNw2N/J9Bk9XY78eO/FkBAjwII/0O2a1ZKGlaYAeMCzbzdBgKsUbuu48kY/3P0X1Rm+uCPEg392yYwOXZnOKQlMX7G4vC7RLGYf4maJL37ATrRYY77II8QRqmENZ8AjHsZgygDCdAgCD3+MNLvkMjikoaHR0cHM6Ly9maW5uZXkuY2FsZW5kYXIuZXRlcm5pdHl3YWxsLmNvbfAQpG3BtAhh2JFbt5nYadlpfQjxIKPnIXj6j40T8IjT813F2DXrI2ZW4/LiaNcsq9NOLdKbCPEEaphDWPAImFAQ6/N2ZggAg9/jDS75DI4jImh0dHBzOi8vYnRjLmNhbGVuZGFyLmNhdGFsbGF4eS5jb20=
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install isolated OpenTimestamps client
+        run: |
+          set -euo pipefail
+          mkdir ots-work evidence
+          cd ots-work
+          npm init -y >/dev/null 2>&1
+          npm install --no-audit --no-fund opentimestamps@0.4.9
+
+      - name: Restore exact receipt and verify original identity
+        run: |
+          set -euo pipefail
+          printf '%s' "$OTS_BASE64" | base64 -d > ots-work/CANONICAL_ROOT.sha256.ots
+          ACTUAL="$(sha256sum ots-work/CANONICAL_ROOT.sha256.ots | awk '{print $1}')"
+          test "$ACTUAL" = "$ORIGINAL_OTS_SHA256"
+          printf '%s  %s\n' "$ACTUAL" CANONICAL_ROOT.sha256.ots > evidence/original-proof.sha256
+
+      - name: Attempt receipt upgrade
+        run: |
+          set +e
+          cd ots-work
+          ./node_modules/.bin/ots-cli.js upgrade CANONICAL_ROOT.sha256.ots > ../evidence/upgrade.txt 2>&1
+          RC=$?
+          set -e
+          echo "$RC" > ../evidence/upgrade-exit-code.txt
+          ./node_modules/.bin/ots-cli.js info CANONICAL_ROOT.sha256.ots | tee ../evidence/info-after.txt
+          cp CANONICAL_ROOT.sha256.ots ../evidence/CANONICAL_ROOT.sha256.ots
+          sha256sum ../evidence/CANONICAL_ROOT.sha256.ots > ../evidence/upgraded-proof.sha256
+
+      - name: Classify and independently verify if Bitcoin attested
+        run: |
+          set -euo pipefail
+          cd ots-work
+          node - <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const OpenTimestamps = require('opentimestamps');
+          (async () => {
+            const digest = process.env.CANONICAL_ROOT_SHA256;
+            const proofBytes = fs.readFileSync('CANONICAL_ROOT.sha256.ots');
+            const detachedOts = OpenTimestamps.DetachedTimestampFile.deserialize(proofBytes);
+            if (Buffer.from(detachedOts.fileDigest()).toString('hex') !== digest) throw new Error('embedded digest mismatch');
+            const info = fs.readFileSync('../evidence/info-after.txt','utf8');
+            const hasBitcoin = info.includes('BitcoinBlockHeaderAttestation');
+            let verifyResult = null;
+            let verifyError = null;
+            if (hasBitcoin) {
+              const original = OpenTimestamps.DetachedTimestampFile.fromHash(new OpenTimestamps.Ops.OpSHA256(), Buffer.from(digest,'hex'));
+              try {
+                verifyResult = await OpenTimestamps.verify(detachedOts, original, {ignoreBitcoinNode:true, timeout:10000});
+              } catch (e) {
+                verifyError = e && e.message ? e.message : String(e);
+              }
+            }
+            const out = {
+              schema: 'MC_F40_OPENTIMESTAMPS_UPGRADE_VERIFY_V1',
+              canonical_root_sha256: digest,
+              embedded_digest_match: true,
+              status: hasBitcoin ? (verifyResult && verifyResult.bitcoin ? 'BITCOIN_ATTESTED_VERIFIED_REMOTE' : 'BITCOIN_ATTESTED_VERIFY_HOLD') : 'PENDING_CALENDAR',
+              bitcoin: verifyResult && verifyResult.bitcoin ? verifyResult.bitcoin : null,
+              verify_error: verifyError,
+              ots_proof_sha256: crypto.createHash('sha256').update(proofBytes).digest('hex'),
+              ots_proof_bytes: proofBytes.length,
+              github_run_id: process.env.GITHUB_RUN_ID,
+              github_sha: process.env.GITHUB_SHA
+            };
+            fs.writeFileSync('../evidence/upgrade-verify-receipt.json', JSON.stringify(out, null, 2) + '\n');
+            console.log(JSON.stringify(out));
+          })().catch(e => { console.error(e); process.exit(1); });
+          NODE
+
+      - name: Upload upgrade evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mc-f40-opentimestamps-upgrade
+          path: evidence/
+          if-no-files-found: error
+          retention-days: 90

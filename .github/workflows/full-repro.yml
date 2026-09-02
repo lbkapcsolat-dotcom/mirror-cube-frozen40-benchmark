@@ -1,0 +1,121 @@
+name: Full radius6 double reproduction
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - repro-kit-v1
+    paths:
+      - .github/workflows/full-repro.yml
+
+permissions:
+  contents: read
+
+jobs:
+  run1:
+    name: independent-run-1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Full radius6 build and 40/40 classification
+        run: |
+          mkdir -p evidence
+          python -m repro.full_run --cache .repro-cache/run1-radius6.sqlite --receipt evidence/receipt.json | tee evidence/stdout.json
+          sha256sum evidence/receipt.json | awk '{print $1}' > evidence/receipt.sha256
+          python - <<'PY'
+          import json
+          r=json.load(open('evidence/receipt.json',encoding='utf-8'))
+          assert r['status']=='PASS', r
+          assert r['radius']==6, r
+          assert r['state_count']==8240087, r
+          assert r['total']==40 and r['confirmed']==40, r
+          assert r['exact12']==4 and r['exact13']==36, r
+          assert not r['contradictions'] and not r['incomplete'], r
+          print('RUN1_RECEIPT_GATE=PASS')
+          print('LOGICAL_CACHE_SHA256='+r['logical_cache_sha256'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-repro-run1
+          path: evidence/
+          if-no-files-found: error
+
+  run2:
+    name: independent-run-2
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Full radius6 build and 40/40 classification
+        run: |
+          mkdir -p evidence
+          python -m repro.full_run --cache .repro-cache/run2-radius6.sqlite --receipt evidence/receipt.json | tee evidence/stdout.json
+          sha256sum evidence/receipt.json | awk '{print $1}' > evidence/receipt.sha256
+          python - <<'PY'
+          import json
+          r=json.load(open('evidence/receipt.json',encoding='utf-8'))
+          assert r['status']=='PASS', r
+          assert r['radius']==6, r
+          assert r['state_count']==8240087, r
+          assert r['total']==40 and r['confirmed']==40, r
+          assert r['exact12']==4 and r['exact13']==36, r
+          assert not r['contradictions'] and not r['incomplete'], r
+          print('RUN2_RECEIPT_GATE=PASS')
+          print('LOGICAL_CACHE_SHA256='+r['logical_cache_sha256'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-repro-run2
+          path: evidence/
+          if-no-files-found: error
+
+  compare:
+    name: receipt-hash-comparison
+    needs: [run1, run2]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: full-repro-run1
+          path: run1
+      - uses: actions/download-artifact@v4
+        with:
+          name: full-repro-run2
+          path: run2
+      - name: Compare independent receipts
+        run: |
+          cmp run1/receipt.json run2/receipt.json
+          cmp run1/receipt.sha256 run2/receipt.sha256
+          python - <<'PY'
+          import hashlib,json,pathlib
+          r1=pathlib.Path('run1/receipt.json').read_bytes()
+          r2=pathlib.Path('run2/receipt.json').read_bytes()
+          assert r1==r2
+          receipt=json.loads(r1)
+          out={
+            'schema':'MC_F40_DOUBLE_REPRO_COMPARISON_V1',
+            'status':'PASS',
+            'receipt_sha256':hashlib.sha256(r1).hexdigest(),
+            'logical_cache_sha256':receipt['logical_cache_sha256'],
+            'state_count':receipt['state_count'],
+            'confirmed':receipt['confirmed'],
+            'exact12':receipt['exact12'],
+            'exact13':receipt['exact13'],
+            'contradictions':len(receipt['contradictions']),
+            'incomplete':len(receipt['incomplete']),
+          }
+          pathlib.Path('comparison.json').write_text(json.dumps(out,sort_keys=True,separators=(',',':'))+'\n',encoding='utf-8')
+          print(json.dumps(out,sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full-repro-comparison
+          path: comparison.json
+          if-no-files-found: error
