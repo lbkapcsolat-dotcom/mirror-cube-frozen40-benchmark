@@ -9,6 +9,8 @@ The only current public research identity for this benchmark is **Tensor**.
 
 The default branch `main`, `README.md`, and `TENSOR_PUBLIC_IDENTITY_MANIFEST_V1.md` define the current public naming surface.
 
+`main` is the only current branch authority for Tensor public identity in this repository.
+
 ## Historical metadata
 
 Older branch names, tags, releases, commits, URLs, or labels may remain visible solely to preserve provenance and reproducibility.
