@@ -21,6 +21,7 @@ Tensor is the current public research identity for this bounded 40-state exact-d
 - `tests/` — bounded regression tests.
 - `docs/METHOD.md` — method summary.
 - `docs/CLAIM_CEILING.md` — explicit scope boundary.
+- `docs/CURRENT_VS_HISTORICAL_PUBLIC_SURFACE_POLICY.md` — current-vs-historical provenance policy.
 
 ## Claim boundary
 
@@ -32,4 +33,4 @@ This repository supports only the bounded claims stated for these 40 frozen stan
 
 **Equilibrium Stability System (ESS)** is a separate system identity. This repository is not the ESS system root and does not publish ESS internal formulas, scoring weights, control-plane state, authority records, or runtime admission.
 
-Earlier labels preserved in Git history or prior immutable release objects are historical provenance only and are not current public identity.
+Older branch names, tags, releases, commits, URLs, or labels may remain visible solely as historical provenance. They are **inactive**, **non-authoritative**, and **not current Tensor identity**. The current `main` branch and `TENSOR_PUBLIC_IDENTITY_MANIFEST_V1.md` control current public identity.
