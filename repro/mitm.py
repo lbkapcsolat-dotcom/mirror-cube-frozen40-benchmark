@@ -3,7 +3,7 @@ from pathlib import Path
 import sqlite3
 from .cube import CubeState
 
-CACHE_SCHEMA='MC_F40_RADIUS_CACHE_V1'
+CACHE_SCHEMA='TENSOR_F40_RADIUS_CACHE_V1'
 MOVE_CONVENTION='STANDARD_3X3_HTM_URFDLB'
 FACES='URFDLB'
 SUFFIXES=('',"'",'2')

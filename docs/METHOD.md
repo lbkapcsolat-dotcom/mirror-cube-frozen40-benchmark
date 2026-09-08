@@ -2,11 +2,11 @@
 
 ## Metric and backend
 
-The benchmark uses the standard 3x3 cubie state space and the Half Turn Metric (HTM): each face quarter-turn, inverse quarter-turn, or half-turn counts as one move.
+Tensor uses the standard 3x3 cubie state space and the Half Turn Metric (HTM): each face quarter-turn, inverse quarter-turn, or half-turn counts as one move.
 
 ## Frozen inputs
 
-The benchmark contains exactly 40 deterministic 13-move candidate sequences. In this repository publication view, the frozen sequences are preserved in `data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv`; the canonical source-pool SHA-256 remains bound by the final seal.
+The benchmark contains exactly 40 deterministic 13-move candidate sequences. The frozen sequences are preserved in `data/FROZEN_40_EXACT_DISTANCE_LEDGER.csv`, with row-level SHA-256 values for integrity checking.
 
 ## Exact-distance rule
 
@@ -19,7 +19,7 @@ The four exact-12 witnesses are preserved in `data/EXACT12_WITNESS_REGISTRY.json
 
 ## Proof routes
 
-The ledger records the proof route per ordinal. Some earlier 16-state evidence was verified on an authorized remote Linux recovery host. Its hashes and classifications are bound in provenance, while this repository explicitly does not claim current local byte custody for those historical predecessor files.
+The ledger records the proof route per ordinal. Some predecessor evidence was verified on an authorized remote recovery host. Historical evidence remains preserved by repository history; the current public surface does not claim local byte custody for those predecessor files.
 
 ## Final counts
 

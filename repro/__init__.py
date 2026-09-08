@@ -1,1 +1,1 @@
-"""Independent public reproduction tooling for MC-F40-EXACT-HTM-V1."""
+"""Independent public reproduction tooling for TENSOR-F40-EXACT-HTM-V1."""
