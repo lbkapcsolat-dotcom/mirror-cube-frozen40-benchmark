@@ -27,4 +27,4 @@ Historical Git commits, branch names, tags, releases, URLs, or labels may retain
 
 All such historical metadata is **inactive**, **non-authoritative**, **not current research identity**, and **not current benchmark identity**. It does not override this manifest and is not reactivated by being preserved.
 
-The detailed interpretation rule is defined in `docs/CURRENT_VS_HISTORICAL_PUBLIC_SURFACE_POLICY.md`.
+`main` is the only current branch authority for Tensor public identity. The detailed interpretation rule is defined in `docs/CURRENT_VS_HISTORICAL_PUBLIC_SURFACE_POLICY.md`.
