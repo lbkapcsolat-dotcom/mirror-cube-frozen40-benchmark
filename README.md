@@ -34,3 +34,5 @@ This repository supports only the bounded claims stated for these 40 frozen stan
 **Equilibrium Stability System (ESS)** is a separate system identity. This repository is not the ESS system root and does not publish ESS internal formulas, scoring weights, control-plane state, authority records, or runtime admission.
 
 Older branch names, tags, releases, commits, URLs, or labels may remain visible solely as historical provenance. They are **inactive**, **non-authoritative**, and **not current Tensor identity**. The current `main` branch and `TENSOR_PUBLIC_IDENTITY_MANIFEST_V1.md` control current public identity.
+
+**Current-surface rule:** `main` is the only current branch authority for Tensor public identity in this repository. Historical tags/releases may remain visible for lineage, but they are provenance-only and do not define current identity.
