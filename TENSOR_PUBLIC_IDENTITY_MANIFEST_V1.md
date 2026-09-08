@@ -23,4 +23,8 @@ Tensor is not an alternate name for ESS, does not replace ESS, and does not expo
 
 ## Provenance rule
 
-Historical Git commits and immutable release objects may retain predecessor labels solely as provenance. They are not current public naming authority and are not rewritten by this migration.
+Historical Git commits, branch names, tags, releases, URLs, or labels may retain predecessor naming solely as provenance and reproducibility evidence.
+
+All such historical metadata is **inactive**, **non-authoritative**, **not current research identity**, and **not current benchmark identity**. It does not override this manifest and is not reactivated by being preserved.
+
+The detailed interpretation rule is defined in `docs/CURRENT_VS_HISTORICAL_PUBLIC_SURFACE_POLICY.md`.
