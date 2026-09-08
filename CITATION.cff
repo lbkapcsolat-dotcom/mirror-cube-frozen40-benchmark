@@ -1,15 +1,14 @@
 cff-version: 1.2.0
 message: "If you use this benchmark, please cite this release."
-title: "Frozen 40-State Mirror Cube / Standard 3x3 Exact HTM Distance Benchmark"
+title: "Tensor — Frozen 40-State Exact HTM Distance Benchmark"
 version: "1.0.0"
-date-released: 2026-08-28
+date-released: 2026-09-08
 type: dataset
 authors:
   - name: "lbkapcsolat-dotcom"
-repository-code: "https://github.com/lbkapcsolat-dotcom/mirror-cube-frozen40-benchmark"
 keywords:
-  - Mirror Cube
-  - Rubik's Cube
+  - Tensor
+  - standard 3x3
   - exact distance
   - HTM
   - benchmark
